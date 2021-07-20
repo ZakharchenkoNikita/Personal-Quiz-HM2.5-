@@ -9,10 +9,7 @@
 import UIKit
 
 class ResultsViewController: UIViewController {
-    // 1. Передать сюда массив с ответами
-    // 2. Определить наиболее часто встерчающийся тип живтоного
-    // 3. Отобразить результат в соответсвии с этим животным
-    // 4. Избавиться от кнопки возврата назад на экране результатов
+    
     // MARK: IB Outlets
     @IBOutlet weak var animalLabel: UILabel!
     @IBOutlet weak var descriptionTextLabel: UILabel!
@@ -26,12 +23,14 @@ class ResultsViewController: UIViewController {
     private var result: Dictionary<AnimalType, Int>.Element? {
         animals.max { min, max in min.value < max.value }
     }
-
+    
+    // MARK: override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+    // MARK: private methods
     private func getMaximumValue() {
         for animal in answers {
             switch animal.type {
@@ -49,7 +48,6 @@ class ResultsViewController: UIViewController {
     
     private func setupUI() {
         self.navigationItem.setHidesBackButton(true, animated: true)
-        
         getMaximumValue()
         
         if let result = result {
