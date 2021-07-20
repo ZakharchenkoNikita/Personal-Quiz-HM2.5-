@@ -22,7 +22,10 @@ class ResultsViewController: UIViewController {
     
     // MARK: private properties
     private var animals: [AnimalType : Int] = [:]
-    private var result: Dictionary<AnimalType, Int>.Element?
+    
+    private var result: Dictionary<AnimalType, Int>.Element? {
+        animals.max { min, max in min.value < max.value }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +45,6 @@ class ResultsViewController: UIViewController {
                 animals[animal.type, default: 0] += 1
             }
         }
-        
-        result = animals.max { min, max in min.value < max.value }
     }
     
     private func setupUI() {
