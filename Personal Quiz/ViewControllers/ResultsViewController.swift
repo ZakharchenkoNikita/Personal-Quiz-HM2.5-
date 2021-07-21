@@ -15,7 +15,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var descriptionTextLabel: UILabel!
     
     // MARK: properties
-    var answers: [Answer] = []
+    var answers: [Answer]!
     
     // MARK: private properties
     private var animals: [AnimalType : Int] = [:]
