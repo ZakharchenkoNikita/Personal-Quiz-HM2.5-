@@ -33,21 +33,16 @@ class ResultsViewController: UIViewController {
     // MARK: private methods
     private func getSortedAnimals() {
         for answer in answers {
-            switch answer.type {
-            case .dog:
-                animals[answer.type, default: 0] += 1
-            case .cat:
-                animals[answer.type, default: 0] += 1
-            case .rabbit:
-                animals[answer.type, default: 0] += 1
-            case .turtle:
-                animals[answer.type, default: 0] += 1
+            if let animalTypeCount = animals[answer.type] {
+                animals.updateValue(animalTypeCount + 1, forKey: answer.type)
+            } else {
+                animals[answer.type] = 1
             }
         }
     }
     
     private func setupUI() {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.setHidesBackButton(true, animated: false)
         getSortedAnimals()
         
         if let result = result {
