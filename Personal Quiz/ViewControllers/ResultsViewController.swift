@@ -31,24 +31,24 @@ class ResultsViewController: UIViewController {
     }
     
     // MARK: private methods
-    private func getMaximumValue() {
-        for animal in answers {
-            switch animal.type {
+    private func getSortedAnimals() {
+        for answer in answers {
+            switch answer.type {
             case .dog:
-                animals[animal.type, default: 0] += 1
+                animals[answer.type, default: 0] += 1
             case .cat:
-                animals[animal.type, default: 0] += 1
+                animals[answer.type, default: 0] += 1
             case .rabbit:
-                animals[animal.type, default: 0] += 1
+                animals[answer.type, default: 0] += 1
             case .turtle:
-                animals[animal.type, default: 0] += 1
+                animals[answer.type, default: 0] += 1
             }
         }
     }
     
     private func setupUI() {
         self.navigationItem.setHidesBackButton(true, animated: true)
-        getMaximumValue()
+        getSortedAnimals()
         
         if let result = result {
             animalLabel.text = "Вы - \(result.key.rawValue)"
